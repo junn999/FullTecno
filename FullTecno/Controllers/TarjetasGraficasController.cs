@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FullTecno.Controllers
 {
-    public class TarjetasGráficasController
+    public class TarjetasGraficasController
     {
     }
 }
