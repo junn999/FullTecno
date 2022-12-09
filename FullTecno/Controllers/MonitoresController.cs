@@ -139,8 +139,8 @@ namespace FullTecno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var Audifonos = await _context.Audifonos.FindAsync(id);
-            _context.Audifonos.Remove(Audifonos);
+            var Monitores = await _context.Monitores.FindAsync(id);
+            _context.Monitores.Remove(Monitores);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
