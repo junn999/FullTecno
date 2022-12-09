@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FullTecno.Data;
 using FullTecno.Models;
 
-namespace Audifonos.Controllers
+namespace FullTecno.Controllers
 {
     public class AudifonosController : Controller
     {
