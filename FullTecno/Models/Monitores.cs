@@ -11,7 +11,6 @@ namespace FullTecno.Models
         public int Id { get; set; }
         public string? Nombre_producto { get; set; }
         
-
         public string? Stock { get; set; }
 
         public decimal Price { get; set; }
