@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,14 +33,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Mouses = await _context.Mouses
+            var mouses = await _context.Mouses
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Mouses == null)
+            if (mouses == null)
             {
                 return NotFound();
             }
 
-            return View(Mouses);
+            return View(mouses);
         }
 
         // GET: Mouses/Create
@@ -54,15 +54,15 @@ namespace FullTecno.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] Mouses Mouses)
+        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] Mouses mouses)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(Mouses);
+                _context.Add(mouses);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(Mouses);
+            return View(mouses);
         }
 
         // GET: Mouses/Edit/5
@@ -73,12 +73,12 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Mouses = await _context.Mouses.FindAsync(id);
-            if (Mouses == null)
+            var mouses = await _context.Mouses.FindAsync(id);
+            if (mouses == null)
             {
                 return NotFound();
             }
-            return View(Mouses);
+            return View(mouses);
         }
 
         // POST: Mouses/Edit/5
@@ -86,9 +86,9 @@ namespace FullTecno.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Mouses Mouses)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Mouses mouses)
         {
-            if (id != Mouses.Id)
+            if (id != mouses.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace FullTecno.Controllers
             {
                 try
                 {
-                    _context.Update(Mouses);
+                    _context.Update(mouses);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MousesExists(Mouses.Id))
+                    if (!MousesExists(mouses.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace FullTecno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(Mouses);
+            return View(mouses);
         }
 
         // GET: Mouses/Delete/5
@@ -124,14 +124,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Mouses = await _context.Mouses
+            var mouses = await _context.Mouses
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Mouses == null)
+            if (mouses == null)
             {
                 return NotFound();
             }
 
-            return View(Mouses);
+            return View(mouses);
         }
 
         // POST: Mouses/Delete/5
@@ -139,8 +139,8 @@ namespace FullTecno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var Mouses = await _context.Mouses.FindAsync(id);
-            _context.Mouses.Remove(Mouses);
+            var mouses = await _context.Mouses.FindAsync(id);
+            _context.Mouses.Remove(mouses);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

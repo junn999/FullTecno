@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,14 +33,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Monitores = await _context.Monitores
+            var monitores = await _context.Monitores
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Monitores == null)
+            if (monitores == null)
             {
                 return NotFound();
             }
 
-            return View(Monitores);
+            return View(monitores);
         }
 
         // GET: Monitores/Create
@@ -54,15 +54,15 @@ namespace FullTecno.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] Monitores Monitores)
+        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] Monitores monitores)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(Monitores);
+                _context.Add(monitores);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(Monitores);
+            return View(monitores);
         }
 
         // GET: Monitores/Edit/5
@@ -73,12 +73,12 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Monitores = await _context.Monitores.FindAsync(id);
-            if (Monitores == null)
+            var monitores = await _context.Monitores.FindAsync(id);
+            if (monitores == null)
             {
                 return NotFound();
             }
-            return View(Monitores);
+            return View(monitores);
         }
 
         // POST: Monitores/Edit/5
@@ -86,9 +86,9 @@ namespace FullTecno.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Monitores Monitores)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Monitores monitores)
         {
-            if (id != Monitores.Id)
+            if (id != monitores.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace FullTecno.Controllers
             {
                 try
                 {
-                    _context.Update(Monitores);
+                    _context.Update(monitores);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MonitoresExists(Monitores.Id))
+                    if (!MonitoresExists(monitores.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace FullTecno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(Monitores);
+            return View(monitores);
         }
 
         // GET: Monitores/Delete/5
@@ -124,14 +124,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Monitores = await _context.Monitores
+            var monitores = await _context.Monitores
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Monitores == null)
+            if (monitores == null)
             {
                 return NotFound();
             }
 
-            return View(Monitores);
+            return View(monitores);
         }
 
         // POST: Monitores/Delete/5
@@ -139,15 +139,15 @@ namespace FullTecno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var Monitores = await _context.Monitores.FindAsync(id);
-            _context.Monitores.Remove(Monitores);
+            var monitores = await _context.Monitores.FindAsync(id);
+            _context.Monitores.Remove(monitores);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MonitoresExists(int id)
         {
-            return _context.Audifonos.Any(e => e.Id == id);
+            return _context.Monitores.Any(e => e.Id == id);
         }
     }
 }

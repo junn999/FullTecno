@@ -19,13 +19,13 @@ namespace FullTecno.Controllers
             _context = context;
         }
 
-        // GET: Movies
+        // GET: Audifonos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Audifonos.ToListAsync());
         }
 
-        // GET: Movies/Details/5
+        // GET: Audifonos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,36 +33,36 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Audifonos = await _context.Audifonos
+            var audifonos = await _context.Audifonos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Audifonos == null)
+            if (audifonos == null)
             {
                 return NotFound();
             }
 
-            return View(Audifonos);
+            return View(audifonos);
         }
 
-        // GET: Movies/Create
+        // GET: Audifonos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: Audifonos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Stock,Price")] Audifonos Audifonos)
+        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] Audifonos audifonos)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(Audifonos);
+                _context.Add(audifonos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(Audifonos);
+            return View(audifonos);
         }
 
         // GET: Audifonos/Edit/5
@@ -73,22 +73,22 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Audifonos = await _context.Audifonos.FindAsync(id);
-            if (Audifonos == null)
+            var audifonos = await _context.Audifonos.FindAsync(id);
+            if (audifonos == null)
             {
                 return NotFound();
             }
-            return View(Audifonos);
+            return View(audifonos);
         }
 
-        // POST: Movies/Edit/5
+        // POST: Audifonos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Audifonos Audifonos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Audifonos audifonos)
         {
-            if (id != Audifonos.Id)
+            if (id != audifonos.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace FullTecno.Controllers
             {
                 try
                 {
-                    _context.Update(Audifonos);
+                    _context.Update(audifonos);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AudifonosExists(Audifonos.Id))
+                    if (!AudifonosExists(audifonos.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace FullTecno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(Audifonos);
+            return View(audifonos);
         }
 
         // GET: Audifonos/Delete/5
@@ -124,14 +124,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var Audifonos = await _context.Audifonos
+            var audifonos = await _context.Audifonos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Audifonos == null)
+            if (audifonos == null)
             {
                 return NotFound();
             }
 
-            return View(Audifonos);
+            return View(audifonos);
         }
 
         // POST: Audifonos/Delete/5
@@ -139,13 +139,13 @@ namespace FullTecno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var Audifonos = await _context.Audifonos.FindAsync(id);
-            _context.Audifonos.Remove(Audifonos);
+            var audifonos = await _context.Audifonos.FindAsync(id);
+            _context.Audifonos.Remove(audifonos);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieExists(int id)
+        private bool AudifonosExists(int id)
         {
             return _context.Audifonos.Any(e => e.Id == id);
         }

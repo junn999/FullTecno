@@ -14,18 +14,18 @@ namespace FullTecno.Controllers
     {
         private readonly FullTecnoContext _context;
 
-        public  TarjetasGraficasController(FullTecnoContext context)
+        public TarjetasGraficasController(FullTecnoContext context)
         {
             _context = context;
         }
 
-        // GET:  TarjetasGraficas
+        // GET: TarjetasGraficas
         public async Task<IActionResult> Index()
         {
-            return View(await _context. TarjetasGraficas.ToListAsync());
+            return View(await _context.TarjetasGraficas.ToListAsync());
         }
 
-        // GET:  TarjetasGraficas/Details/5
+        // GET: TarjetasGraficas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var TarjetasGraficas = await _context. TarjetasGraficas
+            var tarjetasGraficas = await _context.TarjetasGraficas
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if ( TarjetasGraficas == null)
+            if (tarjetasGraficas == null)
             {
                 return NotFound();
             }
 
-            return View( TarjetasGraficas);
+            return View(tarjetasGraficas);
         }
 
-        // GET:  TarjetasGraficas/Create
+        // GET: TarjetasGraficas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST:  TarjetasGraficas/Create
+        // POST: TarjetasGraficas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")]  TarjetasGraficas  TarjetasGraficas)
+        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] TarjetasGraficas tarjetasGraficas)
         {
             if (ModelState.IsValid)
             {
-                _context.Add( TarjetasGraficas);
+                _context.Add(tarjetasGraficas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View( TarjetasGraficas);
+            return View(tarjetasGraficas);
         }
 
-        // GET:   TarjetasGraficas/Edit/5
+        // GET: TarjetasGraficas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var  TarjetasGraficas= await _context. TarjetasGraficas.FindAsync(id);
-            if ( TarjetasGraficas == null)
+            var tarjetasGraficas = await _context.TarjetasGraficas.FindAsync(id);
+            if (tarjetasGraficas == null)
             {
                 return NotFound();
             }
-            return View( TarjetasGraficas);
+            return View(tarjetasGraficas);
         }
 
-        // POST:  TarjetasGraficas/Edit/5
+        // POST: TarjetasGraficas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")]  TarjetasGraficas  TarjetasGraficas)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] TarjetasGraficas tarjetasGraficas)
         {
-            if (id !=  TarjetasGraficas.Id)
+            if (id != tarjetasGraficas.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace FullTecno.Controllers
             {
                 try
                 {
-                    _context.Update( TarjetasGraficas);
+                    _context.Update(tarjetasGraficas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (! TarjetasGraficasExists( TarjetasGraficas.Id))
+                    if (!TarjetasGraficasExists(tarjetasGraficas.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace FullTecno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View( TarjetasGraficas);
+            return View(tarjetasGraficas);
         }
 
-        // GET:  TarjetasGraficas/Delete/5
+        // GET: TarjetasGraficas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,14 +124,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var  TarjetasGraficas = await _context. TarjetasGraficas
+            var tarjetasGraficas = await _context.TarjetasGraficas
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if ( TarjetasGraficas == null)
+            if (tarjetasGraficas == null)
             {
                 return NotFound();
             }
 
-            return View( TarjetasGraficas);
+            return View(tarjetasGraficas);
         }
 
         // POST: TarjetasGraficas/Delete/5
@@ -139,15 +139,15 @@ namespace FullTecno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var  TarjetasGraficas = await _context. TarjetasGraficas.FindAsync(id);
-            _context. TarjetasGraficas.Remove( TarjetasGraficas);
+            var tarjetasGraficas = await _context.TarjetasGraficas.FindAsync(id);
+            _context.TarjetasGraficas.Remove(tarjetasGraficas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool  TarjetasGraficasExists(int id)
+        private bool TarjetasGraficasExists(int id)
         {
-            return _context. TarjetasGraficas.Any(e => e.Id == id);
+            return _context.TarjetasGraficas.Any(e => e.Id == id);
         }
     }
 }

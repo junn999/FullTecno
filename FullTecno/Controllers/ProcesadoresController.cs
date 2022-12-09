@@ -14,18 +14,18 @@ namespace FullTecno.Controllers
     {
         private readonly FullTecnoContext _context;
 
-        public  ProcesadoresController(FullTecnoContext context)
+        public ProcesadoresController(FullTecnoContext context)
         {
             _context = context;
         }
 
-        // GET:  Procesadores
+        // GET: Procesadores
         public async Task<IActionResult> Index()
         {
-            return View(await _context. Procesadores.ToListAsync());
+            return View(await _context.Procesadores.ToListAsync());
         }
 
-        // GET:  Procesadores/Details/5
+        // GET: Procesadores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var  Procesadores = await _context. Procesadores
+            var procesadores = await _context.Procesadores
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if ( Procesadores == null)
+            if (procesadores == null)
             {
                 return NotFound();
             }
 
-            return View( Procesadores);
+            return View(procesadores);
         }
 
-        // GET:  Procesadores/Create
+        // GET: Procesadores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST:  Procesadores/Create
+        // POST: Procesadores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")]  Procesadores  Procesadores)
+        public async Task<IActionResult> Create([Bind("Id,Nombre_producto,Stock,Price")] Procesadores procesadores)
         {
             if (ModelState.IsValid)
             {
-                _context.Add( Procesadores);
+                _context.Add(procesadores);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View( Procesadores);
+            return View(procesadores);
         }
 
-        // GET:  Procesadores/Edit/5
+        // GET: Procesadores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var  Procesadores= await _context. Procesadores.FindAsync(id);
-            if ( Procesadores == null)
+            var procesadores = await _context.Procesadores.FindAsync(id);
+            if (procesadores == null)
             {
                 return NotFound();
             }
-            return View( Procesadores);
+            return View(procesadores);
         }
 
-        // POST:  Procesadores/Edit/5
+        // POST: Procesadores/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")]  Procesadores  Procesadores)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre_producto,Stock,Price")] Procesadores procesadores)
         {
-            if (id !=  Procesadores.Id)
+            if (id != procesadores.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace FullTecno.Controllers
             {
                 try
                 {
-                    _context.Update( Procesadores);
+                    _context.Update(procesadores);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (! ProcesadoresExists( Procesadores.Id))
+                    if (!ProcesadoresExists(procesadores.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace FullTecno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View( Procesadores);
+            return View(procesadores);
         }
 
-        // GET:  Procesadores/Delete/5
+        // GET: Procesadores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,14 +124,14 @@ namespace FullTecno.Controllers
                 return NotFound();
             }
 
-            var  Procesadores = await _context. Procesadores
+            var procesadores = await _context.Procesadores
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if ( Procesadores == null)
+            if (procesadores == null)
             {
                 return NotFound();
             }
 
-            return View( Procesadores);
+            return View(procesadores);
         }
 
         // POST: Procesadores/Delete/5
@@ -139,15 +139,15 @@ namespace FullTecno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var  Procesadores = await _context. Procesadores.FindAsync(id);
-            _context. Procesadores.Remove( Procesadores);
+            var procesadores = await _context.Procesadores.FindAsync(id);
+            _context.Procesadores.Remove(procesadores);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool  ProcesadoresExists(int id)
+        private bool ProcesadoresExists(int id)
         {
-            return _context. Procesadores.Any(e => e.Id == id);
+            return _context.Procesadores.Any(e => e.Id == id);
         }
     }
 }
