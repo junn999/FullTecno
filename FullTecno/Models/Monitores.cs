@@ -8,10 +8,11 @@ namespace FullTecno.Models
 {
     public class Monitores
     {
-        public int Id { get; set; }
+         public int Id { get; set; }
         public string? Nombre_producto { get; set; }
-        
-        public string? Stock { get; set; }
+
+
+        public int Stock { get; set; }
 
         public decimal Price { get; set; }
 
